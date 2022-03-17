@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useEffect,useState} from "react"
+
 function App() {
  const [users,setUsers] = useState([])
   useEffect(() => {
@@ -17,6 +18,26 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={()=>{
+        fetch('http://localhost:8000/users/2',{
+          method:"PUT",
+          body:JSON.stringify({
+            ...users[2],
+            first_name:"Soumyak",
+            last_name:"Bhoi"
+          }),
+          headers:{
+            "content-type":"application/json"
+          }
+        })
+        .then((r)=>r.json())
+        .then((r)=>{
+          console.log(r)
+          setUsers(r)
+        })
+      }} >
+        Add Data
+      </button>
       <table>
           <thead>
             <tr>
