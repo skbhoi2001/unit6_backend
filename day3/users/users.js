@@ -2,6 +2,7 @@ const express=require('express');
 const uuid=require('uuid');
 const Books=require("../books.json");
 const router=express.Router();
+const fs = require('fs')
 
 router.get("/",(req,res)=>{
     const value={
@@ -39,6 +40,7 @@ router.post("/books",(req,res)=>{
             published_year
         }
         Books.push(book);
+        // fs.writeFileSync("../books.json",JSON.stringify(book))
         res.status(201).json(book);
     }
     catch(err){

@@ -5,6 +5,7 @@ let PORT = 8000
 let app = express()
 
 
+app.use(express.json())
 app.use("/users",userController)
 
 

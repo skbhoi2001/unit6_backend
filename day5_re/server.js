@@ -1,6 +1,6 @@
 const express = require("express");
-const users = require('./users.json')
-// const mongoose = require("mongoose")
+// const users = require('./users.json')
+const mongoose = require("mongoose")
 const cors = require("cors")
 const fs= require("fs")
 
@@ -20,25 +20,25 @@ app.use(cors())
 // })
 
 
-app.get("/users", (req,res)=>{
-    res.status(200)
-    res.json(users)
-})
+// app.get("/users", (req,res)=>{
+//     res.status(200)
+//     res.json(users)
+// })
 
-app.put("/users/:index", (req,res)=>{
-    let {index} = req.params;
-    let updatedDAta = req.body;
-    users.splice(index,1,{
-        ...users[index],
-        ...updatedDAta,
-    })
-    fs.writeFileSync(`${__dirname}/users.json`,JSON.stringify(users))
-    res.json(users)
-})
+// app.put("/users/:index", (req,res)=>{
+//     let {index} = req.params;
+//     let updatedDAta = req.body;
+//     users.splice(index,1,{
+//         ...users[index],
+//         ...updatedDAta,
+//     })
+//     fs.writeFileSync(`${__dirname}/users.json`,JSON.stringify(users))
+//     res.json(users)
+// })
 
 
 
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 

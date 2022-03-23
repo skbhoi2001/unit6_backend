@@ -12,6 +12,13 @@ router.get("/", async(req,res)=>{
     let totalPages = Math.ceil((await User.find().countDocuments())/pageSize);
     res.status(200).json({data:users,totalPages})
 })
-router.post("/", async(req,res)=>{})
+router.post("/", async(req,res)=>{
+    try{
+        let createUser = await User.create(req.body);
+    res.status(200).json(createUser)
+    }catch(e){
+        res.send(400).send(e.message)
+    }
+})
 
 module.exports =router;
